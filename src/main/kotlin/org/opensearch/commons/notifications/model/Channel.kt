@@ -17,6 +17,7 @@ import org.opensearch.commons.notifications.NotificationConstants.CONFIG_TYPE_TA
 import org.opensearch.commons.notifications.NotificationConstants.DESCRIPTION_TAG
 import org.opensearch.commons.notifications.NotificationConstants.IS_ENABLED_TAG
 import org.opensearch.commons.notifications.NotificationConstants.NAME_TAG
+import org.opensearch.commons.utils.BaseModel
 import org.opensearch.commons.utils.logger
 import java.io.IOException
 

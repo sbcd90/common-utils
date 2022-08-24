@@ -12,6 +12,7 @@ import org.opensearch.common.xcontent.XContentBuilder
 import org.opensearch.common.xcontent.XContentParser
 import org.opensearch.common.xcontent.XContentParserUtils
 import org.opensearch.commons.notifications.NotificationConstants.DELETE_RESPONSE_LIST_TAG
+import org.opensearch.commons.utils.BaseResponse
 import org.opensearch.commons.utils.STRING_READER
 import org.opensearch.commons.utils.STRING_WRITER
 import org.opensearch.commons.utils.enumReader

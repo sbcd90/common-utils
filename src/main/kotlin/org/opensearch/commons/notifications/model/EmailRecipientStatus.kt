@@ -14,6 +14,7 @@ import org.opensearch.common.xcontent.XContentParser
 import org.opensearch.common.xcontent.XContentParserUtils
 import org.opensearch.commons.notifications.NotificationConstants.DELIVERY_STATUS_TAG
 import org.opensearch.commons.notifications.NotificationConstants.RECIPIENT_TAG
+import org.opensearch.commons.utils.BaseModel
 import org.opensearch.commons.utils.logger
 import org.opensearch.commons.utils.validateEmail
 import java.io.IOException

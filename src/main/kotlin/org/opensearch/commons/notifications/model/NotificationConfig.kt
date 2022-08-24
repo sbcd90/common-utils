@@ -19,6 +19,7 @@ import org.opensearch.commons.notifications.NotificationConstants.NAME_TAG
 import org.opensearch.commons.notifications.model.config.ConfigDataProperties.createConfigData
 import org.opensearch.commons.notifications.model.config.ConfigDataProperties.getReaderForConfigType
 import org.opensearch.commons.notifications.model.config.ConfigDataProperties.validateConfigData
+import org.opensearch.commons.utils.BaseModel
 import org.opensearch.commons.utils.fieldIfNotNull
 import org.opensearch.commons.utils.logger
 import java.io.IOException

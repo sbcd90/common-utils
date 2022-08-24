@@ -16,6 +16,7 @@ import org.opensearch.commons.notifications.NotificationConstants.FILE_CONTENT_T
 import org.opensearch.commons.notifications.NotificationConstants.FILE_DATA_TAG
 import org.opensearch.commons.notifications.NotificationConstants.FILE_ENCODING_TAG
 import org.opensearch.commons.notifications.NotificationConstants.FILE_NAME_TAG
+import org.opensearch.commons.utils.BaseModel
 import org.opensearch.commons.utils.fieldIfNotNull
 import org.opensearch.commons.utils.logger
 

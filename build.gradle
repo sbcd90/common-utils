@@ -6,7 +6,7 @@
 buildscript {
     ext {
         opensearch_group = "org.opensearch"
-        opensearch_version = System.getProperty("opensearch.version", "2.1.1-SNAPSHOT")
+        opensearch_version = System.getProperty("opensearch.version", "2.0.0-SNAPSHOT")
         isSnapshot = "true" == System.getProperty("build.snapshot", "true")
         buildVersionQualifier = System.getProperty("build.version_qualifier", "")
         kotlin_version = System.getProperty("kotlin.version", "1.6.10")
@@ -74,6 +74,8 @@ dependencies {
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib-common:${kotlin_version}"
     compileOnly "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3" // ${kotlin_version} does not work for coroutines
+    implementation "com.cronutils:cron-utils:9.1.6"
+    implementation 'commons-validator:commons-validator:1.7'
     testImplementation "org.opensearch.test:framework:${opensearch_version}"
     testImplementation "org.jetbrains.kotlin:kotlin-test:${kotlin_version}"
     testImplementation "org.mockito:mockito-core:3.10.0"
@@ -210,4 +212,4 @@ task updateVersion {
         // Include the required files that needs to be updated with new Version
         ant.replaceregexp(file:'build.gradle', match: '"opensearch.version", "\\d.*"', replace: '"opensearch.version", "' + newVersion.tokenize('-')[0] + '-SNAPSHOT"', flags:'g', byline:true)
     }
-}  
+}

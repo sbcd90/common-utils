@@ -16,6 +16,7 @@ import org.opensearch.common.xcontent.XContentParserUtils
 import org.opensearch.commons.notifications.NotificationConstants.ATTACHMENT_TAG
 import org.opensearch.commons.notifications.NotificationConstants.HTML_DESCRIPTION_TAG
 import org.opensearch.commons.notifications.NotificationConstants.TEXT_DESCRIPTION_TAG
+import org.opensearch.commons.utils.BaseModel
 import org.opensearch.commons.utils.fieldIfNotNull
 import org.opensearch.commons.utils.logger
 import java.io.IOException

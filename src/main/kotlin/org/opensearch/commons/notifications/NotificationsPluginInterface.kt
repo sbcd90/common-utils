@@ -9,7 +9,6 @@ import org.opensearch.action.ActionResponse
 import org.opensearch.client.node.NodeClient
 import org.opensearch.common.io.stream.Writeable
 import org.opensearch.commons.ConfigConstants.OPENSEARCH_SECURITY_USER_INFO_THREAD_CONTEXT
-import org.opensearch.commons.notifications.action.BaseResponse
 import org.opensearch.commons.notifications.action.CreateNotificationConfigRequest
 import org.opensearch.commons.notifications.action.CreateNotificationConfigResponse
 import org.opensearch.commons.notifications.action.DeleteNotificationConfigRequest
@@ -36,6 +35,7 @@ import org.opensearch.commons.notifications.action.UpdateNotificationConfigReque
 import org.opensearch.commons.notifications.action.UpdateNotificationConfigResponse
 import org.opensearch.commons.notifications.model.ChannelMessage
 import org.opensearch.commons.notifications.model.EventSource
+import org.opensearch.commons.utils.BaseResponse
 import org.opensearch.commons.utils.SecureClientWrapper
 import org.opensearch.commons.utils.recreateObject
 

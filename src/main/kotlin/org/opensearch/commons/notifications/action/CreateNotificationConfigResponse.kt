@@ -12,6 +12,7 @@ import org.opensearch.common.xcontent.XContentBuilder
 import org.opensearch.common.xcontent.XContentParser
 import org.opensearch.common.xcontent.XContentParserUtils
 import org.opensearch.commons.notifications.NotificationConstants.CONFIG_ID_TAG
+import org.opensearch.commons.utils.BaseResponse
 import org.opensearch.commons.utils.logger
 import java.io.IOException
 

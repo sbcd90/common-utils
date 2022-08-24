@@ -19,6 +19,7 @@ import org.opensearch.common.xcontent.XContentParserUtils
 import org.opensearch.commons.notifications.NotificationConstants.START_INDEX_TAG
 import org.opensearch.commons.notifications.NotificationConstants.TOTAL_HITS_TAG
 import org.opensearch.commons.notifications.NotificationConstants.TOTAL_HIT_RELATION_TAG
+import org.opensearch.commons.utils.BaseModel
 import org.opensearch.commons.utils.logger
 import org.opensearch.search.SearchHit
 

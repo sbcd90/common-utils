@@ -18,6 +18,7 @@ import org.opensearch.commons.notifications.NotificationConstants.CONFIG_NAME_TA
 import org.opensearch.commons.notifications.NotificationConstants.CONFIG_TYPE_TAG
 import org.opensearch.commons.notifications.NotificationConstants.DELIVERY_STATUS_TAG
 import org.opensearch.commons.notifications.NotificationConstants.EMAIL_RECIPIENT_STATUS_TAG
+import org.opensearch.commons.utils.BaseModel
 import org.opensearch.commons.utils.fieldIfNotNull
 import org.opensearch.commons.utils.logger
 import org.opensearch.commons.utils.objectList

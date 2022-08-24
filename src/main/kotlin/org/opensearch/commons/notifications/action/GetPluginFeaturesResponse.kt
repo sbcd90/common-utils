@@ -13,6 +13,7 @@ import org.opensearch.common.xcontent.XContentParser
 import org.opensearch.common.xcontent.XContentParserUtils
 import org.opensearch.commons.notifications.NotificationConstants.ALLOWED_CONFIG_TYPE_LIST_TAG
 import org.opensearch.commons.notifications.NotificationConstants.PLUGIN_FEATURES_TAG
+import org.opensearch.commons.utils.BaseResponse
 import org.opensearch.commons.utils.STRING_READER
 import org.opensearch.commons.utils.STRING_WRITER
 import org.opensearch.commons.utils.logger

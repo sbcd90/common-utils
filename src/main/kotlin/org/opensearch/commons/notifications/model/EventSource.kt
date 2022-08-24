@@ -16,6 +16,7 @@ import org.opensearch.commons.notifications.NotificationConstants.REFERENCE_ID_T
 import org.opensearch.commons.notifications.NotificationConstants.SEVERITY_TAG
 import org.opensearch.commons.notifications.NotificationConstants.TAGS_TAG
 import org.opensearch.commons.notifications.NotificationConstants.TITLE_TAG
+import org.opensearch.commons.utils.BaseModel
 import org.opensearch.commons.utils.logger
 import org.opensearch.commons.utils.stringList
 import java.io.IOException

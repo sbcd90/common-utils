@@ -16,6 +16,7 @@ import org.opensearch.common.xcontent.XContentParserUtils
 import org.opensearch.common.xcontent.XContentType
 import org.opensearch.commons.notifications.NotificationConstants.EVENT_SOURCE_TAG
 import org.opensearch.commons.notifications.NotificationConstants.STATUS_LIST_TAG
+import org.opensearch.commons.utils.BaseModel
 import org.opensearch.commons.utils.logger
 import org.opensearch.commons.utils.objectList
 import java.io.IOException

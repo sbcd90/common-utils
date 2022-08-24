@@ -11,6 +11,7 @@ import org.opensearch.common.xcontent.ToXContent
 import org.opensearch.common.xcontent.XContentBuilder
 import org.opensearch.common.xcontent.XContentParser
 import org.opensearch.commons.notifications.model.ChannelList
+import org.opensearch.commons.utils.BaseResponse
 import java.io.IOException
 
 /**

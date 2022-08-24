@@ -17,6 +17,7 @@ import org.opensearch.commons.notifications.NotificationConstants.CONFIG_ID_TAG
 import org.opensearch.commons.notifications.NotificationConstants.CONFIG_TAG
 import org.opensearch.commons.notifications.NotificationConstants.CREATED_TIME_TAG
 import org.opensearch.commons.notifications.NotificationConstants.UPDATED_TIME_TAG
+import org.opensearch.commons.utils.BaseModel
 import org.opensearch.commons.utils.logger
 import java.io.IOException
 import java.time.Instant

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package org.opensearch.commons.notifications.action
+package org.opensearch.commons.utils
 
 import org.opensearch.action.ActionResponse
 import org.opensearch.common.io.stream.StreamInput
