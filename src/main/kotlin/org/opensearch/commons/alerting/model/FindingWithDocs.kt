@@ -34,7 +34,7 @@ class FindingWithDocs(
     override fun toXContent(builder: XContentBuilder, params: ToXContent.Params): XContentBuilder {
         builder.startObject()
             .field(FINDING_FIELD, finding)
-            .field(DOCUMENTS_FIELD, documents)
+            .field(DOCUMENTS_FIELD, documents.toTypedArray())
         builder.endObject()
         return builder
     }
