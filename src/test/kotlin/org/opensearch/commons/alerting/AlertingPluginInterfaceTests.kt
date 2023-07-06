@@ -15,6 +15,7 @@ import org.opensearch.common.settings.Settings
 import org.opensearch.commons.alerting.action.AcknowledgeAlertRequest
 import org.opensearch.commons.alerting.action.AcknowledgeAlertResponse
 import org.opensearch.commons.alerting.action.AcknowledgeChainedAlertRequest
+import org.opensearch.commons.alerting.action.AlertingActions
 import org.opensearch.commons.alerting.action.DeleteMonitorRequest
 import org.opensearch.commons.alerting.action.DeleteMonitorResponse
 import org.opensearch.commons.alerting.action.DeleteWorkflowRequest
@@ -219,7 +220,7 @@ internal class AlertingPluginInterfaceTests {
             (it.getArgument(2) as ActionListener<SubscribeFindingsResponse>)
                 .onResponse(response)
         }.whenever(client).execute(Mockito.any(ActionType::class.java), Mockito.any(), Mockito.any())
-        AlertingPluginInterface.publishFinding(client, request, listener)
+        AlertingPluginInterface.publishFinding(client, AlertingActions.SUBSCRIBE_FINDINGS_ACTION_TYPE, request, listener)
         Mockito.verify(listener, Mockito.times(1)).onResponse(ArgumentMatchers.eq(response))
     }
 

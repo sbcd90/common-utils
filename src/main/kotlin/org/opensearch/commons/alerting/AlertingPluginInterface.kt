@@ -4,6 +4,7 @@
  */
 package org.opensearch.commons.alerting
 
+import org.opensearch.action.ActionType
 import org.opensearch.client.node.NodeClient
 import org.opensearch.commons.alerting.action.AcknowledgeAlertRequest
 import org.opensearch.commons.alerting.action.AcknowledgeAlertResponse
@@ -13,6 +14,8 @@ import org.opensearch.commons.alerting.action.DeleteMonitorRequest
 import org.opensearch.commons.alerting.action.DeleteMonitorResponse
 import org.opensearch.commons.alerting.action.DeleteWorkflowRequest
 import org.opensearch.commons.alerting.action.DeleteWorkflowResponse
+import org.opensearch.commons.alerting.action.EventListenerRequest
+import org.opensearch.commons.alerting.action.EventListenerResponse
 import org.opensearch.commons.alerting.action.GetAlertsRequest
 import org.opensearch.commons.alerting.action.GetAlertsResponse
 import org.opensearch.commons.alerting.action.GetFindingsRequest
@@ -25,7 +28,9 @@ import org.opensearch.commons.alerting.action.IndexMonitorRequest
 import org.opensearch.commons.alerting.action.IndexMonitorResponse
 import org.opensearch.commons.alerting.action.IndexWorkflowRequest
 import org.opensearch.commons.alerting.action.IndexWorkflowResponse
+import org.opensearch.commons.alerting.action.PublishAdRequest
 import org.opensearch.commons.alerting.action.PublishFindingsRequest
+import org.opensearch.commons.alerting.action.SubscribeAdResponse
 import org.opensearch.commons.alerting.action.SubscribeFindingsResponse
 import org.opensearch.commons.notifications.action.BaseResponse
 import org.opensearch.commons.utils.recreateObject
@@ -76,6 +81,24 @@ object AlertingPluginInterface {
             wrapActionListener(listener) { response ->
                 recreateObject(response) {
                     DeleteMonitorResponse(
+                        it
+                    )
+                }
+            }
+        )
+    }
+
+    fun addEventListener(
+        client: NodeClient,
+        request: EventListenerRequest,
+        listener: ActionListener<EventListenerResponse>
+    ) {
+        client.execute(
+            AlertingActions.EVENT_LISTENER_ACTION_TYPE,
+            request,
+            wrapActionListener(listener) { response ->
+                recreateObject(response) {
+                    EventListenerResponse(
                         it
                     )
                 }
@@ -248,15 +271,35 @@ object AlertingPluginInterface {
 
     fun publishFinding(
         client: NodeClient,
+        actionType: ActionType<SubscribeFindingsResponse>,
         request: PublishFindingsRequest,
         listener: ActionListener<SubscribeFindingsResponse>
     ) {
         client.execute(
-            AlertingActions.SUBSCRIBE_FINDINGS_ACTION_TYPE,
+            actionType,
             request,
             wrapActionListener(listener) { response ->
                 recreateObject(response) {
                     SubscribeFindingsResponse(
+                        it
+                    )
+                }
+            }
+        )
+    }
+
+    fun publishAdRequest(
+        client: NodeClient,
+        actionType: ActionType<SubscribeAdResponse>,
+        request: PublishAdRequest,
+        listener: ActionListener<SubscribeAdResponse>
+    ) {
+        client.execute(
+            actionType,
+            request,
+            wrapActionListener(listener) { response ->
+                recreateObject(response) {
+                    SubscribeAdResponse(
                         it
                     )
                 }
