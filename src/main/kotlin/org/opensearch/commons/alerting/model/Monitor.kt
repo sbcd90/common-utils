@@ -41,7 +41,10 @@ data class Monitor(
     val triggers: List<Trigger>,
     val uiMetadata: Map<String, Any>,
     val dataSources: DataSources = DataSources(),
-    val owner: String? = "alerting"
+    val owner: String? = "alerting",
+    val isChild: Boolean? = false,
+    val shards: List<String> = listOf(),
+    val childMonitors: List<String> = listOf()
 ) : ScheduledJob {
 
     override val type = MONITOR_TYPE
@@ -107,7 +110,10 @@ data class Monitor(
         } else {
             DataSources()
         },
-        owner = sin.readOptionalString()
+        owner = sin.readOptionalString(),
+        isChild = sin.readOptionalBoolean(),
+        shards = sin.readOptionalStringList(),
+        childMonitors = sin.readOptionalStringList()
     )
 
     // This enum classifies different Monitors
@@ -157,6 +163,9 @@ data class Monitor(
         if (uiMetadata.isNotEmpty()) builder.field(UI_METADATA_FIELD, uiMetadata)
         builder.field(DATA_SOURCES_FIELD, dataSources)
         builder.field(OWNER_FIELD, owner)
+        builder.field(CHILD_FIELD, isChild)
+        builder.field(SHARDS_FIELD, shards)
+        builder.field(CHILD_MONITORS_FIELD, childMonitors)
         if (params.paramAsBoolean("with_type", false)) builder.endObject()
         return builder.endObject()
     }
@@ -202,6 +211,9 @@ data class Monitor(
         out.writeBoolean(dataSources != null) // for backward compatibility with pre-existing monitors which don't have datasources field
         dataSources.writeTo(out)
         out.writeOptionalString(owner)
+        out.writeOptionalBoolean(isChild)
+        out.writeOptionalStringCollection(shards)
+        out.writeOptionalStringCollection(childMonitors)
     }
 
     companion object {
@@ -222,6 +234,9 @@ data class Monitor(
         const val DATA_SOURCES_FIELD = "data_sources"
         const val ENABLED_TIME_FIELD = "enabled_time"
         const val OWNER_FIELD = "owner"
+        const val CHILD_FIELD = "is_child"
+        const val SHARDS_FIELD = "shards"
+        const val CHILD_MONITORS_FIELD = "child_monitors"
 
         // This is defined here instead of in ScheduledJob to avoid having the ScheduledJob class know about all
         // the different subclasses and creating circular dependencies
@@ -249,6 +264,9 @@ data class Monitor(
             val inputs: MutableList<Input> = mutableListOf()
             var dataSources = DataSources()
             var owner = "alerting"
+            var isChild = false
+            val shards: MutableList<String> = mutableListOf()
+            var childMonitors: MutableList<String> = mutableListOf()
 
             XContentParserUtils.ensureExpectedToken(XContentParser.Token.START_OBJECT, xcp.currentToken(), xcp)
             while (xcp.nextToken() != XContentParser.Token.END_OBJECT) {
@@ -298,6 +316,27 @@ data class Monitor(
                     DATA_SOURCES_FIELD -> dataSources = if (xcp.currentToken() == XContentParser.Token.VALUE_NULL) DataSources()
                     else DataSources.parse(xcp)
                     OWNER_FIELD -> owner = if (xcp.currentToken() == XContentParser.Token.VALUE_NULL) owner else xcp.text()
+                    CHILD_FIELD -> isChild = if (xcp.currentToken() == XContentParser.Token.VALUE_NULL) false else xcp.booleanValue()
+                    SHARDS_FIELD -> {
+                        XContentParserUtils.ensureExpectedToken(
+                            XContentParser.Token.START_ARRAY,
+                            xcp.currentToken(),
+                            xcp
+                        )
+                        while (xcp.nextToken() != XContentParser.Token.END_ARRAY) {
+                            shards.add(xcp.text())
+                        }
+                    }
+                    CHILD_MONITORS_FIELD -> {
+                        XContentParserUtils.ensureExpectedToken(
+                            XContentParser.Token.START_ARRAY,
+                            xcp.currentToken(),
+                            xcp
+                        )
+                        while (xcp.nextToken() != XContentParser.Token.END_ARRAY) {
+                            childMonitors.add(xcp.text())
+                        }
+                    }
                     else -> {
                         xcp.skipChildren()
                     }
@@ -324,7 +363,10 @@ data class Monitor(
                 triggers.toList(),
                 uiMetadata,
                 dataSources,
-                owner
+                owner,
+                isChild,
+                shards,
+                childMonitors
             )
         }
 
